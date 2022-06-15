@@ -1,0 +1,98 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <title>Random Stoic Quotes Generator</title>
+        <script>
+            const QUOTEBANK = [
+                {
+                    quote: "The greatest obstacle to living is expectancy, which hangs upon tomorrow and loses today. You are arranging what lies in Fortune’s control, and abandoning what lies in yours. What are you looking at? To what goal are you straining? The whole future lies in uncertainty: live immediately.",
+                    author: "Seneca"
+                },
+                {
+                    quote: "We should always be asking ourselves: 'Is this something that is, or is not, in my control?'",
+                    author: "Epictetus"
+                },
+                {
+                    quote: "The happiness of your life depends upon the quality of your thoughts.",
+                    author: "Marcus Aurelius"
+                },
+                {
+                    quote: "Waste no more time arguing what a good man should be. Be One.",
+                    author: "Marcus Aurelius"
+                },
+                {
+                    quote: "I begin to speak only when I’m certain what I’ll say isn’t better left unsaid.",
+                    author: "Cato"
+                },
+                {
+                    quote: "What man actually needs is not a tensionless state but rather the striving and struggling for some goal worthy of him.",
+                    author: "Victor Frankl"
+                },
+                {
+                    quote: "All the good are friends of one another",
+                    author: "Zeno"
+                },
+                {
+                    quote: "We begin to lose our hesitation to do immoral things when we lose our hesitation to speak of them",
+                    author: "Musonius Rufus"
+                },
+                {
+                    quote: "He with the most who is content with the least",
+                    author: "Diogenes"
+                }
+            ];
+            window.onload = init;
+            function init() {
+                generateQuote()
+            }
+            function generateQuote() {
+                let quoteSize = QUOTEBANK.length;
+                let randomIndex = Math.floor(Math.random() * quoteSize);
+                let randomQuoteData = QUOTEBANK[randomIndex]; 
+                
+                let twitterLink = "https://twitter.com/intent/tweet?hashtags=quotes&amp;related=freecodecamp&amp;text=%22"
+                
+                let quoteInApiFormat = randomQuoteData.quote.replace(/ /g, "%20");
+                twitterLink += quoteInApiFormat;
+                
+                let authorInApiFormat = randomQuoteData.author.replace(/ /g, "%20");
+                twitterLink += " - " + authorInApiFormat;
+                
+                document.getElementById("tweet-quote").href = twitterLink;
+                document.getElementById("text").innerText = randomQuoteData.quote;
+                document.getElementById("author").innerText = randomQuoteData.author;
+
+            }
+        </script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row py-5">
+                <div class="col-md-6 offset-md-3">
+                    <wrapper id="quote-box">
+                        <div class="card">
+                            <div class="card-header text-center">
+                                Random Stoic Quote Generator
+                            </div>
+                            <div class="card-body">
+                            <h5 class="card-title">
+                                <div id="text"></div>
+                            </h5>
+                            <p class="card-text text-center">
+                                <div id="author"></div>
+                            </p> 
+                            <button id="new-quote" onClick="generateQuote();" class="btn btn-success btn-block" type="button">New Quote</button>
+                            <a href="#" id="tweet-quote" target="_blank" class="btn btn-primary btn-block" type="button">Tweet Quote</a>
+                            </div>
+                        </div>  
+                    </wrapper>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    </body>
+
+</html>
